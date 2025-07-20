@@ -44,6 +44,5 @@ Combines skill and experience scores (typically 70% skill, 30% experience) into 
 Anonymization:
 The resume is sanitized to remove personal identifiers before being shown.
 
-OpenAI API key:
-REACT_APP_OPENAI_API_KEY=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
+
 
