@@ -1,0 +1,23 @@
+[
+  {
+    "id": 2,
+    "title": "Web Developer",
+    "skills": " react",
+    "description": "dynamic web developer",
+    "years_experience": 2
+  },
+  {
+    "id": 3,
+    "title": "Software Developer",
+    "skills": "Java, Python, C++",
+    "description": "Should have problem solving ability",
+    "years_experience": 3
+  },
+  {
+    "id": 4,
+    "title": "Cashier",
+    "skills": "Cash handling accuracy , Loss prevention",
+    "description": "Motivated cashier who is highly energetic, outgoing and detail-oriented. Handles multiple responsibilities simultaneously while providing exceptional customer service.",
+    "years_experience": 2
+  }
+]

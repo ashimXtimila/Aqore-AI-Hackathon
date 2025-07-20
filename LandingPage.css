@@ -1,0 +1,147 @@
+/* LandingPage.css */
+
+/* Page Background */
+body {
+    background: #f4f6fb;
+    font-family: 'Poppins', sans-serif;
+    color: #34495e;
+    margin: 0;
+    padding: 0;
+}
+
+/* Main Container */
+.landing-container {
+    max-width: 1000px;
+    margin: 3rem auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+/* Gradient Header */
+.header {
+    background: linear-gradient(90deg, #5c6bc0, #42a5f5);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 2.8rem;
+    margin: 0;
+    font-weight: 600;
+}
+
+/* Content Area */
+.content {
+    padding: 2rem;
+}
+
+/* Form Section */
+.section {
+    background: #fff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
+}
+
+/* Labels & Inputs */
+.form-label {
+    font-weight: 500;
+    color: #2e3a59;
+    margin-bottom: 0.25rem;
+}
+
+.form-control,
+.form-select {
+    border-radius: 10px;
+    border: 1px solid #ccd1e0;
+    padding: 0.75rem;
+    transition: box-shadow 0.3s;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #5c6bc0;
+    box-shadow: 0 0 0 4px rgba(92, 107, 192, 0.2);
+}
+
+/* Primary Button */
+.btn-primary {
+    background: linear-gradient(90deg, #5c6bc0, #42a5f5);
+    color: white;
+    border: none;
+    border-radius: 14px;
+    font-size: 1.1rem;
+    padding: 0.8rem;
+    transition: transform 0.2s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+}
+
+/* Success Button */
+.btn-success {
+    background: linear-gradient(90deg, #66bb6a, #43a047);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 0.6rem 1.2rem;
+    font-weight: 500;
+}
+
+/* Alerts */
+.alert {
+    border-radius: 10px;
+    background: #ffebee;
+    border: 1px solid #ffcdd2;
+    color: #c62828;
+    padding: 0.75rem 1rem;
+    animation: slideIn 0.3s ease-out;
+}
+
+/* List Group Items */
+.list-group-item {
+    border-radius: 10px;
+    border: 1px solid #e8eaf6;
+    margin-bottom: 0.5rem;
+    background: #fff;
+    transition: background 0.2s;
+}
+
+.list-group-item:hover {
+    background: #f0f4ff;
+}
+
+/* Divider Line */
+hr {
+    border-top: 2px solid #e0e0e0;
+    margin: 2rem 0;
+}
+
+/* Animations */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .landing-container {
+        margin: 1rem;
+    }
+
+    .btn-primary {
+        width: 100%;
+    }
+}
