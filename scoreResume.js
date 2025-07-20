@@ -1,57 +1,31 @@
-import { callOpenAI } from "./openai.js"; // You must implement this
-import { redactSensitiveInfo } from "./utils.js"; // optional anonymization
+import dotenv from "dotenv";
+import fetch from "node-fetch"; // use `npm install node-fetch`
+dotenv.config();
 
-export async function scoreResume(resumeText, job, candidateExp) {
-    if (!resumeText || !job?.skills || job.skills.length === 0) {
-        return {
-            skillScore: 0,
-            experienceScore: 0,
-            overallScore: 0,
-            biasFlags: ["Invalid input"],
-            anonymizedResumeText: "[Invalid resume]",
-        };
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+
+export async function callOpenAI(prompt) {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+        method: "POST",
+        headers: {
+            "Authorization": `Bearer ${OPENAI_API_KEY}`,
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            model: "gpt-4", // or "gpt-3.5-turbo"
+            messages: [
+                { role: "system", content: "You are a helpful AI resume screener." },
+                { role: "user", content: prompt },
+            ],
+            temperature: 0.2,
+        }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+        throw new Error(data.error?.message || "OpenAI API error");
     }
 
-    const prompt = `
-.
-
-Job Requirements:
-- Required Skills: ${job.skills.join(", ")}
-- Required Years of Experience: ${job.yearsExperience || "Not specified"}
-
-Candidate Resume:
-"""
-${resumeText}
-"""
-
-Candidate claims ${candidateExp} years of experience.
-
-
-`;
-
-    let aiResult = {
-        skillScore: 0,
-        experienceScore: 0,
-        biasFlags: ["Failed to analyze"],
-    };
-
-    try {
-        const response = await callOpenAI(prompt); // Sends prompt to GPT
-        const json = JSON.parse(response);
-
-        aiResult = {
-            skillScore: json.skillScore ?? 0,
-            experienceScore: json.experienceScore ?? 0,
-            biasFlags: json.biasFlags ?? [],
-        };
-    } catch (err) {
-        console.error("AI resume scoring failed:", err);
-        aiResult.biasFlags = ["AI scoring failed"];
-    }
-
-    return {
-        ...aiResult,
-        overallScore: Math.round(aiResult.skillScore * 0.7 + aiResult.experienceScore * 0.3),
-        anonymizedResumeText: redactSensitiveInfo(resumeText),
-    };
+    return data.choices[0].message.content;
 }
